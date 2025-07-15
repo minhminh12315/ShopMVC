@@ -1,7 +1,13 @@
+using ShopMVC.Models;
+using ShopMVC.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<MongoDBSettings>(
+    builder.Configuration.GetSection("MongoDBSettings"));
+builder.Services.AddSingleton<ProductService>();
 
 var app = builder.Build();
 
